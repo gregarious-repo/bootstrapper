@@ -475,7 +475,7 @@ class Form extends Facade
      */
     public static function control_group($label, $control, $group_class = '', $help = null, $label_size = null)
     {
-      $class = 'form-group';
+      $class = 'control-group';
 
       if ($group_class !== '') {
         $class .= ' '.$group_class;
@@ -663,7 +663,7 @@ class Form extends Facade
       $buttons = func_get_args();
       if(sizeof($buttons) == 1) $buttons = $buttons[0];
 
-      $html  = '<div class="form-control">';
+      $html  = '<div class="form-actions">';
       $html .= is_array($buttons) ? implode(' ', $buttons) : $buttons;
       $html .= '</div>';
 
@@ -754,7 +754,7 @@ class Form extends Facade
      *
      * @return string
      */
-    public static function submit($value = null, $attributes = array(), $hasDropdown = false)
+    public static function  submit($value = null, $attributes = array(), $hasDropdown = false)
     {
       return Button::submit($value, $attributes, $hasDropdown);
   }

@@ -359,6 +359,24 @@ class Table
         return $html;
     }
 
+    protected function angular( $resource, $collection, array $fields , $actions = array() ){
+
+        $content = '';
+        $object  = str_singular($resource);
+
+        foreach ($fields as $key => $attribute) {
+
+            $content .="<td><% ".$object.".".$attribute." %></td>";
+        }
+
+        if ( !empty( $actions )) {
+
+            $content .='<td><button data-ng-click="removeSegment(this, $index)" class="btn btn-danger" data-category="<% '.$actions[0].' %>" data-segment="<% '.$object.'.'.$actions[1].' %>"><i class="halflings-icon white trash"></i> </button></td>';
+        }
+        $html = sprintf('<tbody ng-model="categorySegments" ng-class="{in:%s.length}" class="fade" ><tr ng-repeat="%s in %s" >%s</tr></tbody>',$collection, $object, $collection , $content);
+
+        return  $html;
+    }
     /**
      * Render a full_row with <th> tags
      *
